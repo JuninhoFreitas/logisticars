@@ -1,0 +1,1661 @@
+version: 1
+directus: 10.11.0
+vendor: postgres
+collections:
+  - collection: demandas
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: demandas
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: demandas
+  - collection: entregas
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: entregas
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: entregas
+  - collection: estoque
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: estoque
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: draft
+      versioning: true
+    schema:
+      name: estoque
+fields:
+  - collection: demandas
+    field: id
+    type: integer
+    meta:
+      collection: demandas
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: demandas
+      data_type: integer
+      default_value: nextval('demandas_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: status
+    type: string
+    meta:
+      collection: demandas
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: ALTÍSSIMA
+            value: highest
+            icon: priority_high
+            color: '#FF0000'
+          - text: Alta
+            value: high
+            color: '#E53E3E'
+          - text: Média
+            value: medium
+            color: '#F0F401'
+          - text: Baixa
+            value: low
+            color: '#8CEA1A'
+          - text: Baíxissima
+            value: lowest
+            color: '#2AFA00'
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: ALTÍSSIMA
+            value: highest
+            color: '#FF0000'
+          - text: Alta
+            value: high
+            color: '#CC3838'
+          - text: Média
+            value: medium
+            color: var(--theme--warning)
+          - text: Baixa
+            value: low
+            color: '#B7E141'
+          - text: Baixíssima
+            value: lowest
+            color: '#2EED07'
+        icon: low_priority
+        placeholder: Prioridade
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: demandas
+      data_type: character varying
+      default_value: low
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: sort
+    type: integer
+    meta:
+      collection: demandas
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: demandas
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: user_created
+    type: uuid
+    meta:
+      collection: demandas
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 6
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: demandas
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: demandas
+    field: date_created
+    type: timestamp
+    meta:
+      collection: demandas
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 7
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: demandas
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: user_updated
+    type: uuid
+    meta:
+      collection: demandas
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 8
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: demandas
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: demandas
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: demandas
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 9
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: demandas
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: orders
+    type: json
+    meta:
+      collection: demandas
+      conditions: null
+      display: formatted-json-value
+      display_options:
+        format: '{{ item }}'
+      field: orders
+      group: null
+      hidden: false
+      interface: list
+      note: null
+      options:
+        addLabel: Solicitar novo item
+        fields:
+          - field: item
+            name: item
+            type: string
+            meta:
+              field: item
+              width: full
+              type: string
+              note: >-
+                Coloque aqui o que deseja solicitar, insira também a unidade
+                (kg, litros, unidade)
+              interface: input
+              options:
+                placeholder: Arroz 1kg
+                iconLeft: fastfood
+          - field: quantity
+            name: quantity
+            type: float
+            meta:
+              field: quantity
+              width: half
+              type: float
+              note: Coloque aqui a quantidade
+              interface: input
+              options:
+                placeholder: '0'
+        template: '{{ item }} | {{ quantity }}'
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: orders
+      table: demandas
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: demandas
+    field: description
+    type: string
+    meta:
+      collection: demandas
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: title
+        placeholder: Descrição
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: demandas
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: id
+    type: integer
+    meta:
+      collection: entregas
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: entregas
+      data_type: integer
+      default_value: nextval('entregas_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: status
+    type: string
+    meta:
+      collection: entregas
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Enviado
+            value: sent
+          - text: Entregue
+            value: done
+          - text: A Caminho
+            value: in_progress
+          - text: Aguardando Envio
+            value: waiting
+          - text: Cancelado
+            value: cancelled
+            color: '#FF0000'
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Enviado
+            value: sent
+            color: '#FBFF00'
+          - text: Entregue
+            value: done
+            color: '#2BFF00'
+          - text: A Caminho
+            value: in_progress
+            color: '#85F7FF'
+          - text: Aguardando Envio
+            value: waiting
+            color: '#D4FF00'
+          - text: Cancelado
+            value: cancelled
+            color: '#FF0000'
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: entregas
+      data_type: character varying
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: sort
+    type: integer
+    meta:
+      collection: entregas
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: entregas
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: user_created
+    type: uuid
+    meta:
+      collection: entregas
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 5
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: entregas
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: entregas
+    field: date_created
+    type: timestamp
+    meta:
+      collection: entregas
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 6
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: entregas
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: user_updated
+    type: uuid
+    meta:
+      collection: entregas
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 7
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: entregas
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: entregas
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: entregas
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 8
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: entregas
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: remessa
+    type: json
+    meta:
+      collection: entregas
+      conditions: null
+      display: formatted-json-value
+      display_options:
+        format: '{{ name }} | Qtd: {{ quantity }}'
+      field: remessa
+      group: null
+      hidden: false
+      interface: list
+      note: null
+      options:
+        addLabel: Adicionar item
+        fields:
+          - field: name
+            name: name
+            type: string
+            meta:
+              field: name
+              width: full
+              type: string
+              interface: input
+              options:
+                placeholder: Item
+                iconLeft: fastfood
+          - field: quantity
+            name: quantity
+            type: float
+            meta:
+              field: quantity
+              width: half
+              type: float
+              interface: input
+              options:
+                placeholder: Quantidade
+                iconLeft: money
+          - field: aaa
+            name: aaa
+            type: string
+            meta:
+              field: aaa
+              width: full
+              type: string
+              interface: select-dropdown-m2o-search
+        template: '{{ name }} | {{ quantity }}'
+      readonly: false
+      required: false
+      sort: 9
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: remessa
+      table: entregas
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: description
+    type: string
+    meta:
+      collection: entregas
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Descrição da Entrega
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: entregas
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: entregas
+    field: teste
+    type: integer
+    meta:
+      collection: entregas
+      conditions: null
+      display: null
+      display_options: null
+      field: teste
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o-search
+      note: null
+      options:
+        placeholder: item
+        template: '{{name}}'
+      readonly: false
+      required: false
+      sort: 10
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: teste
+      table: entregas
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: estoque
+      foreign_key_column: id
+  - collection: estoque
+    field: id
+    type: integer
+    meta:
+      collection: estoque
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: estoque
+      data_type: integer
+      default_value: nextval('estoque_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: status
+    type: string
+    meta:
+      collection: estoque
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Disponível
+            value: available
+            color: '#00FF04'
+          - text: Indisponível
+            value: unavailable
+            color: '#FF0000'
+          - text: Rascunho
+            value: draft
+            color: '#545454'
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Disponível
+            value: available
+            color: '#42FF58'
+            icon: volunteer_activism
+          - text: Indisponível
+            value: unavailable
+            color: '#FF0000'
+          - text: Rascunho
+            value: draft
+            color: var(--theme--warning)
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: estoque
+      data_type: character varying
+      default_value: available
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: sort
+    type: integer
+    meta:
+      collection: estoque
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: estoque
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: user_created
+    type: uuid
+    meta:
+      collection: estoque
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 9
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: estoque
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: estoque
+    field: date_created
+    type: timestamp
+    meta:
+      collection: estoque
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 10
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: estoque
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: user_updated
+    type: uuid
+    meta:
+      collection: estoque
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 11
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: estoque
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: estoque
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: estoque
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 12
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: estoque
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: quantity
+    type: float
+    meta:
+      collection: estoque
+      conditions: null
+      display: labels
+      display_options:
+        choices: null
+      field: quantity
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: numbers
+        min: 0
+        placeholder: Quantidade
+      readonly: false
+      required: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: quantity
+      table: estoque
+      data_type: real
+      default_value: 0
+      max_length: null
+      numeric_precision: 24
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: operation
+    type: string
+    meta:
+      collection: estoque
+      conditions: null
+      display: null
+      display_options: null
+      field: operation
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Adicionar
+            value: sum
+            icon: add_box
+            color: '#1EFF00'
+          - text: Remover
+            value: subtract
+            icon: remove
+            color: '#E35169'
+        icon: settings_applications
+        placeholder: Operação
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: operation
+      table: estoque
+      data_type: character varying
+      default_value: sum
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: name
+    type: text
+    meta:
+      collection: estoque
+      conditions: null
+      display: null
+      display_options: null
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: fastfood
+        placeholder: Nome do Item
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: name
+      table: estoque
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: unit
+    type: string
+    meta:
+      collection: estoque
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Kg
+            value: kilogram
+          - text: Mg
+            value: milligram
+          - text: g
+            value: gram
+          - text: km
+            value: kilometer
+          - text: Litros
+            value: liter
+          - text: ml
+            value: milliter
+          - text: m
+            value: meter
+          - text: cm
+            value: centimeter
+      field: unit
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: un
+            value: unit
+          - text: Kg
+            value: kilogram
+            icon: weight
+          - text: g
+            value: gram
+            icon: weight
+          - text: Mg
+            value: milligram
+            icon: weight
+          - text: l (litro)
+            value: liters
+            icon: water_full
+          - text: ml
+            value: milliter
+            icon: water_loss
+          - text: m
+            value: meter
+          - text: cm
+            value: centimeter
+          - text: km
+            value: kilometer
+        icon: avg_pace
+        iconLeft: build
+        placeholder: Unidade
+      readonly: false
+      required: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: unit
+      table: estoque
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: estoque
+    field: total
+    type: float
+    meta:
+      collection: estoque
+      conditions: null
+      display: formatted-value
+      display_options:
+        suffix: null
+      field: total
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: money
+        min: null
+        placeholder: Total
+      readonly: true
+      required: false
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: total
+      table: estoque
+      data_type: real
+      default_value: 0
+      max_length: null
+      numeric_precision: 24
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+relations:
+  - collection: demandas
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: demandas
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: demandas
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: demandas_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: demandas
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: demandas
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: demandas
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: demandas_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: directus_webhooks
+    field: migrated_flow
+    related_collection: directus_flows
+    meta: null
+    schema:
+      table: directus_webhooks
+      column: migrated_flow
+      foreign_key_table: directus_flows
+      foreign_key_column: id
+      constraint_name: directus_webhooks_migrated_flow_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: entregas
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: entregas
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: entregas
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: entregas_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: entregas
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: entregas
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: entregas
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: entregas_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: entregas
+    field: teste
+    related_collection: estoque
+    meta:
+      junction_field: null
+      many_collection: entregas
+      many_field: teste
+      one_allowed_collections: null
+      one_collection: estoque
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: entregas
+      column: teste
+      foreign_key_table: estoque
+      foreign_key_column: id
+      constraint_name: entregas_teste_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: estoque
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: estoque
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: estoque
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: estoque_user_created_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: estoque
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: estoque
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: estoque
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: estoque_user_updated_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION

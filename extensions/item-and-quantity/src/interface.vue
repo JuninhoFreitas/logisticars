@@ -123,7 +123,7 @@ export default {
 
 				if(props.value != null && searchQuery.value == ''){
 					const fetchName = await api.get(`/items/${estoqueCollection}/${props.value}`);
-					console.log('fetchName',fetchName.data.data)
+					console.log('fetchName', fetchName.data.data)
 					searchQuery.value = outputFields(fetchName.data.data);
 				}
 			} catch (err) {
